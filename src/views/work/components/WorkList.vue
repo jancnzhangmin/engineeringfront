@@ -20,31 +20,29 @@
           <label class="weui-form-preview__label">进度</label>
           <span class="weui-form-preview__value">80%</span>
         </div>
-                <div class="weui-form-preview__item">
+        <div class="weui-form-preview__item">
           <label class="weui-form-preview__label">时间</label>
           <span class="weui-form-preview__value">张敏创建于3天前</span>
         </div>
       </div>
     </div>
-<form-preview></form-preview>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { FormPreview, Badge } from 'vux'
+import { Badge } from 'vux'
 import { Tag } from 'vant'
 Vue.use(Tag)
 export default {
   components: {
-    FormPreview,
     Badge
   }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang='less'>
+@import "../../../assets/style/weui-form-preview.less";
 .weui-form-preview__hd:after {
   border-bottom: 0px solid #d9d9d9;
 }

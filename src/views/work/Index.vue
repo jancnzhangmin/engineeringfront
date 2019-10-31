@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-search show-action>
-      <span slot="action" style="color:#4679cc;" >新建任务</span>
+      <span slot="action" style="color:#4679cc;" @click="onCreatework">新建任务</span>
     </van-search>
     <van-tabs v-model="active" sticky animated color="#4679cc">
       <van-tab>
@@ -30,7 +30,7 @@
 
 <script>
 import Vue from 'vue'
-import { Tab, Tabs, Search  } from 'vant'
+import { Tab, Tabs, Search } from 'vant'
 import { Badge } from 'vux'
 import WorkList from './components/WorkList'
 
@@ -42,11 +42,17 @@ export default {
     Badge,
     WorkList
   },
-  data() {
+  data () {
     return {
       active: 0
     }
+  },
+  methods: {
+    onCreatework () {
+      this.$router.push('/creatework')
+    }
   }
+
 }
 </script>
 <style scoped>

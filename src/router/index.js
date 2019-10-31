@@ -25,6 +25,11 @@ export default new Router({
           component: () => import('@/views/work/Index.vue')
         }
       ]
+    },
+    {
+      path: '/creatework',
+      name: 'creatework',
+      component: () => import('@/views/work/Creatework.vue')
     }
   ]
 })
