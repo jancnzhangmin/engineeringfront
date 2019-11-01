@@ -17,11 +17,17 @@ export default new Router({
         {
           path: '/await',
           name: 'await',
+          meta: {
+            index: 1
+          },
           component: () => import('@/views/await/Index.vue')
         },
         {
           path: '/work',
           name: 'work',
+          meta: {
+            index: 2
+          },
           component: () => import('@/views/work/Index.vue')
         }
       ]

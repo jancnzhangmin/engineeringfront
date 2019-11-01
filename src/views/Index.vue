@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div style="margin-bottom: 50px;">
-        <router-view></router-view>
+    <div>
+      <transition :name="transitionName">
+        <router-view style="margin-bottom: 50px;"></router-view>
+      </transition>
     </div>
     <van-tabbar v-model="active" active-color="#4679cc">
       <van-tabbar-item info="3" replace to="/await">
@@ -30,8 +32,50 @@ Vue.use(Icon)
 export default {
   data () {
     return {
-      active: 0
+      active: 0,
+      transitionName: ''
+    }
+  },
+  created () {
+    this.active = this.$route.meta.index > 0 ? this.$route.meta.index - 1 : 0
+  },
+  watch: {
+    $route (to, from) {
+      // 如果to索引大于from索引,判断为前进状态,反之
+      if (to.meta.index > from.meta.index) {
+        this.transitionName = 'slide-left'
+      } else {
+        this.transitionName = 'slide-right'
+      }
+      this.active = to.meta.index ? to.meta.index - 1 : 0
     }
   }
 }
 </script>
+<style scoped>
+/*路由切换动画*/
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+</style>
