@@ -3,9 +3,10 @@
     <div v-transfer-dom>
       <loading v-model="isLoading"></loading>
     </div>
-    <transition 
-    @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
-    :name="viewTransition">
+    <transition
+      @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
+      :name="viewTransition"
+    >
       <router-view class="router-view"></router-view>
     </transition>
   </div>
@@ -29,7 +30,7 @@ export default {
       isLoading: state => state.vux.isLoading,
       direction: state => state.vux.direction
     }),
-    viewTransition () {
+    viewTransition() {
       if (!this.direction) return ''
       return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
     }
@@ -39,7 +40,10 @@ export default {
 
 <style lang="less">
 .router-view {
+  position: absolute;
+  height: 100%;
   width: 100%;
+  background: #f6f6f6;
 }
 .vux-pop-out-enter-active,
 .vux-pop-out-leave-active,

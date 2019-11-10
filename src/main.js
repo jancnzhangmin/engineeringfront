@@ -8,9 +8,12 @@ import App from './App'
 import './assets/iconfont/iconfont.css'
 import router from './router'
 import { LoadingPlugin, DatetimePlugin } from 'vux'
+import global from './store/global.js'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
+
+Vue.prototype.$global = global
 
 const history = window.sessionStorage
 history.clear()

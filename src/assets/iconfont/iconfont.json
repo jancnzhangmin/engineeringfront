@@ -13,6 +13,20 @@
       "unicode_decimal": 58950
     },
     {
+      "icon_id": "237786",
+      "name": "讨论",
+      "font_class": "iconfontb",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2060531",
+      "name": "联系人",
+      "font_class": "lianxiren1",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
       "icon_id": "2152311",
       "name": "工作",
       "font_class": "gongzuo",
@@ -41,6 +55,20 @@
       "unicode_decimal": 59131
     },
     {
+      "icon_id": "3449880",
+      "name": "项目",
+      "font_class": "xiangmu1",
+      "unicode": "e776",
+      "unicode_decimal": 59254
+    },
+    {
+      "icon_id": "3786415",
+      "name": "文档",
+      "font_class": "wendang1",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
       "icon_id": "4936231",
       "name": "待办",
       "font_class": "daiban",
@@ -53,6 +81,20 @@
       "font_class": "xiangmu",
       "unicode": "e830",
       "unicode_decimal": 59440
+    },
+    {
+      "icon_id": "6639190",
+      "name": "公告 222",
+      "font_class": "gonggao222",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "6982923",
+      "name": "我 的",
+      "font_class": "wodeA",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     },
     {
       "icon_id": "7966568",
@@ -88,6 +130,13 @@
       "font_class": "guanzhu",
       "unicode": "e606",
       "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "11029970",
+      "name": "订 单 (1)",
+      "font_class": "dingdan",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
     }
   ]
 }

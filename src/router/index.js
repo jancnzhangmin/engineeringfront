@@ -29,6 +29,14 @@ export default new Router({
             index: 2
           },
           component: () => import('@/views/work/Index.vue')
+        },
+        {
+          path: 'ower',
+          name: 'ower',
+          meta: {
+            index: 4
+          },
+          component: () => import('@/views/ower/Index.vue')
         }
       ]
     },
@@ -36,6 +44,32 @@ export default new Router({
       path: '/creatework',
       name: 'creatework',
       component: () => import('@/views/work/Creatework.vue')
+    },
+    {
+      path: '/ower/currentproject',
+      name: 'owercurrentproject',
+      component: () => import('@/views/ower/project/Index.vue')
+    },
+    {
+      path: '/ower/currentproject/new',
+      name: 'owercurrentprojectnew',
+      component: () => import('@/views/ower/project/New.vue')
+    },
+    {
+      path: '/ower/setting',
+      name: 'owersetting',
+      component: () => import('@/views/ower/setting/Index.vue')
+    },
+    {
+      path: '/ower/notice',
+      name: 'owernotice',
+      component: () => import('@/views/ower/notice/Index.vue')
+    },
+    {
+      path: '/ower/notice/new',
+      name: 'owernotice',
+      component: () => import('@/views/ower/notice/New.vue')
     }
+
   ]
 })

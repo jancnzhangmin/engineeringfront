@@ -2,7 +2,7 @@
   <div>
     <div>
       <transition :name="transitionName">
-        <router-view style="margin-bottom: 50px;"></router-view>
+        <router-view style="margin-bottom: 50px;width:100%;"></router-view>
       </transition>
     </div>
     <van-tabbar v-model="active" active-color="#4679cc">
@@ -15,7 +15,7 @@
       <van-tabbar-item>
         <span slot="icon" class="iconfont icon-icon_jindu" style="font-size:22px;"></span>进度
       </van-tabbar-item>
-      <van-tabbar-item>
+      <van-tabbar-item replace to="/ower">
         <span slot="icon" class="iconfont icon-wode" style="font-size:22px;"></span>我的
       </van-tabbar-item>
     </van-tabbar>
