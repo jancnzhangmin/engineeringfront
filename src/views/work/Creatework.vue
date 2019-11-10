@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 <template>
   <div>
     <van-nav-bar title="新任务" left-arrow @click-left="onClickLeft" />
@@ -53,7 +54,7 @@
         @click="showTime(true)"
       />
 
-            <van-field
+      <van-field
         readonly
         clickable
         label="完成（%）"
@@ -82,7 +83,17 @@
 
 <script>
 import Vue from 'vue'
-import { NavBar, Field, Cell, CellGroup, DatetimePicker, Popup, Checkbox, CheckboxGroup, Button } from 'vant'
+import {
+  NavBar,
+  Field,
+  Cell,
+  CellGroup,
+  DatetimePicker,
+  Popup,
+  Checkbox,
+  CheckboxGroup,
+  Button
+} from 'vant'
 import { dateFormat } from 'vux'
 
 Vue.use(NavBar)
@@ -94,8 +105,7 @@ Vue.use(Checkbox).use(CheckboxGroup)
 Vue.use(Button)
 
 export default {
-
-  data() {
+  data () {
     return {
       currentDate: new Date(),
       beginTime: '',
@@ -108,18 +118,18 @@ export default {
     }
   },
   methods: {
-    onClickLeft() {
+    onClickLeft () {
       this.$router.go(-1)
     },
-    onConfirm() {
+    onConfirm () {
       if (this.Timebeginorend) {
         this.beginTime = dateFormat(this.currentDate, 'YYYY-MM-DD')
       } else {
         this.endTime = dateFormat(this.currentDate, 'YYYY-MM-DD')
       }
-      this.showPicker = false;
+      this.showPicker = false
     },
-    showTime(istime) {
+    showTime (istime) {
       if (istime) {
         this.currentDate = new Date(this.beginTime)
         this.Timebeginorend = true
@@ -129,12 +139,11 @@ export default {
       }
       this.showPicker = true
     },
-    onbenintime() {
-      this.beginTime.length > 0 ? beginTime = dateFormat(new Date(this.beginTime), 'YYYY-MM-DD') : ''
-      this.showbeginTime = false;
+    onbenintime () {
+      this.beginTime = this.beginTime.length > 0 ? (dateFormat(new Date(this.beginTime), 'YYYY-MM-DD')) : ''
+      this.showbeginTime = false
     }
   }
-
 }
 </script>
 

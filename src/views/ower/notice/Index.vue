@@ -34,10 +34,10 @@ export default {
     Badge
   },
   methods: {
-    onClickLeft() {
+    onClickLeft () {
       this.$router.go(-1)
     },
-    onClickRight() {
+    onClickRight () {
       this.$router.push('/ower/notice/new')
     }
   }

@@ -30,7 +30,7 @@ export default {
       isLoading: state => state.vux.isLoading,
       direction: state => state.vux.direction
     }),
-    viewTransition() {
+    viewTransition () {
       if (!this.direction) return ''
       return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
     }

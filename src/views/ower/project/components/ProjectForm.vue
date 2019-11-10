@@ -106,7 +106,7 @@ export default {
     Flexbox,
     FlexboxItem
   },
-  data() {
+  data () {
     return {
       show: false,
       checked: true
@@ -114,7 +114,7 @@ export default {
   },
 
   methods: {
-    showPopup() {
+    showPopup () {
       this.show = true
     }
   }

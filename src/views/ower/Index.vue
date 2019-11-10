@@ -55,17 +55,17 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import { Grid, GridItem, Cell, CellGroup } from 'vant';
+import Vue from 'vue'
+import { Grid, GridItem, Cell, CellGroup } from 'vant'
 
-Vue.use(Grid).use(GridItem);
-Vue.use(Cell).use(CellGroup);
+Vue.use(Grid).use(GridItem)
+Vue.use(Cell).use(CellGroup)
 export default {
-methods:{
-    onSetting() {
-        this.$router.push('/ower/setting')
+  methods: {
+    onSetting () {
+      this.$router.push('/ower/setting')
     }
-}
+  }
 }
 </script>
 
