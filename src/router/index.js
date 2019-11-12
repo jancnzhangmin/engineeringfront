@@ -67,8 +67,18 @@ export default new Router({
     },
     {
       path: '/ower/notice/new',
-      name: 'owernotice',
+      name: 'owernoticenew',
       component: () => import('@/views/ower/notice/New.vue')
+    },
+    {
+      path: '/ower/myorder',
+      name: 'owermyorder',
+      component: () => import('@/views/ower/myorder/Index.vue')
+    },
+    {
+      path: '/ower/myorder/new',
+      name: 'owermyordernew',
+      component: () => import('@/views/ower/myorder/New.vue')
     }
 
   ]

@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "33645",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
       "icon_id": "83636",
       "name": "讨论",
       "font_class": "discuss",
@@ -46,6 +53,13 @@
       "font_class": "icon_jindu",
       "unicode": "e611",
       "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "2763902",
+      "name": "删除筛选项",
+      "font_class": "delete2",
+      "unicode": "e7a5",
+      "unicode_decimal": 59301
     },
     {
       "icon_id": "2981059",

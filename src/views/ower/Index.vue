@@ -41,7 +41,7 @@
       <van-cell size="large" title="公告" to="/ower/notice" is-link value>
         <span slot="icon" class="iconfont icon-gonggao222" style="margin-right:5px;color:#4679cc;"></span>
       </van-cell>
-      <van-cell size="large" title="订单" is-link value>
+      <van-cell size="large" title="订单" to="/ower/myorder" is-link value>
         <span slot="icon" class="iconfont icon-dingdan" style="margin-right:5px;color:#4679cc;"></span>
       </van-cell>
       <van-cell size="large" title="讨论" is-link value>

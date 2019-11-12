@@ -10,6 +10,7 @@ const service = axios.create({
   service.interceptors.request.use(
     config => {
         config.headers['UserToken'] = global.userinfo.usertoken
+        config.headers['currentProject'] = global.userinfo.currentProject
         return config
     }
   )

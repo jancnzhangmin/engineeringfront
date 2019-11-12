@@ -3,7 +3,8 @@ const userinfo = {
     usertoken : '5',
     username : '',
     headurl : '',
-    retry : 3
+    retry : 3,
+    currentProject :0//当前项目id
 }
 
 

@@ -16,9 +16,9 @@
                 </van-cell>
             </van-cell-group>
         </van-radio-group>
-        <van-tabbar v-model="active" active-color="#4679cc">
-          <van-button block to="/ower/currentproject/new" color="#4679cc" style="height: 50px;">新项目</van-button>
-        </van-tabbar>
+        
+          <van-button block to="/ower/currentproject/new" color="#4679cc" style="position: absolute;bottom: 0px;">新项目</van-button>
+        
     </div>
 </template>
 
