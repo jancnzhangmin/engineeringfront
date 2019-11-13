@@ -1,8 +1,8 @@
 <template>
   <div>
     <van-cell-group style="margin-top:10px;">
-      <van-field label="订单主题" required />
-      <van-field rows="2" autosize type="textarea" placeholder="描述" />
+      <van-field label="订单主题" v-model="ordername" required />
+      <van-field rows="2" autosize type="textarea" v-model="ordersummary" placeholder="描述" />
       <van-field
         readonly
         required
@@ -80,7 +80,7 @@ import Vue from 'vue'
 import { Cell, CellGroup, Field, Row, Col, Button, Picker, Popup } from 'vant'
 import { numberComma, numberPad, numberRandom } from 'vux'
 import { before_create_order } from '@/api/ower/myorder/myorder'
-import{ create_order} from '@/api/ower/myorder/myorder'
+import { create_order } from '@/api/ower/myorder/myorder'
 import { stringify } from 'querystring'
 Vue.use(Cell).use(CellGroup)
 Vue.use(Field)
@@ -94,10 +94,12 @@ export default {
     return {
       detailList: [],
       assignuser: '',
-      assignuserid:0,
+      assignuserid: 0,
       showAssignPicker: false,
       assignUserList: [],
       showDetailPicker: false,
+      ordername: '',
+      ordersummary: '',
       currentDetail: {
         id: 0,//当前行id
         name: '',//当前项目名称
@@ -164,14 +166,29 @@ export default {
       return numberComma(parseFloat(data).toFixed(2))
     },
     onCommit(way) {
-        let param = {
-            
+      orderdetailarr = []
+      amount = 0
+      this.detailList.forEach(item => {
+        amount += parseFloat(item.number) * parseFloat(item.amount)
+        let orderdetail = {
+          name: item.name,
+          number: item.number,
+          price: item.amount
         }
-        if(way == 'new'){
-create_order().then(data =>{
+        orderdetailarr.push(orderdetail)
+      })
+      let param = {
+        name: this.ordername,
+        summary: this.ordersummary,
+        amount: this.total_cost,
+        assign_id: this.assignuserid,
+        orderdetails: orderdetailarr
+      }
+      if (way == 'new') {
+        create_order().then(data => {
 
-})
-        }
+        })
+      }
     },
   },
   computed: {
@@ -187,10 +204,10 @@ create_order().then(data =>{
     before_create_order().then(data => {
       //debugger
       data.result.forEach(item => {
-          let param = {
-              id:item.id,
-              name:item.name
-          }
+        let param = {
+          id: item.id,
+          name: item.name
+        }
         this.assignUserList.push(param)
       })
     })
