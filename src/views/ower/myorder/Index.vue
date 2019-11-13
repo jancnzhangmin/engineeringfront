@@ -7,16 +7,24 @@
             right-text="新订单"
             @click-right="onClickRight"
         />
-        <van-list finished-text="没有更多了" style="margin-top:10px;">
+
+        <van-list
+            finished-text="没有更多了"
+            style="margin-top:10px;"
+        >
+
             <van-cell
                 v-for="item in 10"
                 :key="item"
                 title="二小区成本"
                 value="￥150.00"
             >
-                <div slot="label" class="van-multi-ellipsis--l2">
-                    这是一段最多显示两行的文字，多余的内容会被省略。这是一段最多显示两行的文字，多余的内容会被省略。
-                </div>
+
+                <div
+                    slot="label"
+                    class="van-multi-ellipsis--l2"
+                >这是一段最多显示两行的文字，多余的内容会被省略。这是一段最多显示两行的文字，多余的内容会被省略。</div>
+
             </van-cell>
         </van-list>
     </div>
