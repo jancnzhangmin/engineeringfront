@@ -5,8 +5,9 @@
             left-arrow
             @click-left="onClickLeft"
             right-text="保存"
+            @click-right="onClickRight"
         />
-        <project-form />
+        <project-form :id='id' ref="form"/>
     </div>
 </template>
 
@@ -17,12 +18,16 @@ import ProjectForm from './components/ProjectForm'
 Vue.use(NavBar)
 
 export default {
+    props: ['id'],
     components: {
         ProjectForm
     },
     methods: {
         onClickLeft () {
             this.$router.go(-1)
+        },
+        onClickRight () {
+            this.$refs.form.dataSave()
         }
     }
 }

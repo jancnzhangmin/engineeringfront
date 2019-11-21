@@ -5,8 +5,9 @@
             left-arrow
             @click-left="onClickLeft"
             right-text="保存"
+            @click-right="onClickRight"
         />
-        <project-form />
+        <project-form id='0' ref="form"/>
     </div>
 </template>
 
@@ -23,6 +24,9 @@ export default {
     methods: {
         onClickLeft () {
             this.$router.go(-1)
+        },
+        onClickRight () {
+            this.$refs.form.dataSave()
         }
     }
 }
