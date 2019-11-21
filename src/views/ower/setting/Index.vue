@@ -14,7 +14,7 @@
 <script>
 import Vue from 'vue'
 import { NavBar, Field, Cell, CellGroup, Button } from 'vant'
-import { get_setting } from '@/api/ower/get_setting'
+import { getSetting } from '@/api/ower/get_setting'
 Vue.use(NavBar)
 Vue.use(Field)
 Vue.use(Cell).use(CellGroup)
@@ -25,7 +25,7 @@ export default {
             this.$router.go(-1)
         },
         getuser () {
-            get_setting().then(data => {
+            getSetting().then(data => {
                 alert(data)
             })
         }

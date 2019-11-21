@@ -79,6 +79,12 @@ export default new Router({
             path: '/ower/myorder/new',
             name: 'owermyordernew',
             component: () => import('@/views/ower/myorder/New.vue')
+        },
+        {
+            path: '/ower/myorder/show/:id',
+            name: 'owermyordershow',
+            component: () => import('@/views/ower/myorder/Show.vue'),
+            props:true
         }
     ]
 })

@@ -1,23 +1,14 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <van-cell-group style="margin-top:10px;">
-      <van-field label="订单主题" v-model="ordername" required />
-      <van-field rows="2" autosize type="textarea" v-model="ordersummary" placeholder="描述" />
-      <van-field
-        readonly
-        required
-        clickable
-        label="指派给"
-        :value="assignuser"
-        @click="showAssignPicker = true"
-      />
-    </van-cell-group>
-=======
     <div>
         <van-cell-group style="margin-top:10px;">
-            <van-field label="订单主题" required />
-            <van-field rows="2" autosize type="textarea" placeholder="描述" />
+            <van-field label="订单主题" v-model="ordername" required />
+            <van-field
+                rows="2"
+                v-model="ordersummary"
+                autosize
+                type="textarea"
+                placeholder="描述"
+            />
             <van-field
                 readonly
                 required
@@ -27,8 +18,6 @@
                 @click="showAssignPicker = true"
             />
         </van-cell-group>
->>>>>>> 291f5592b7c2387a89288cd8edf5c546b9388c11
-
         <van-cell-group style="margin-top:10px;">
             <van-field disabled>
                 <van-row
@@ -124,10 +113,9 @@
 <script>
 import Vue from 'vue'
 import { Cell, CellGroup, Field, Row, Col, Button, Picker, Popup } from 'vant'
-import { numberComma, numberPad, numberRandom } from 'vux'
-import { before_create_order } from '@/api/ower/myorder/myorder'
-import { create_order } from '@/api/ower/myorder/myorder'
-import { stringify } from 'querystring'
+import { numberComma } from 'vux'
+import { beforeCreateOrder, createOrder } from '@/api/ower/myorder/myorder'
+
 Vue.use(Cell).use(CellGroup)
 Vue.use(Field)
 Vue.use(Row).use(Col)
@@ -136,28 +124,10 @@ Vue.use(Picker)
 Vue.use(Popup)
 
 export default {
-<<<<<<< HEAD
-  data() {
-    return {
-      detailList: [],
-      assignuser: '',
-      assignuserid: 0,
-      showAssignPicker: false,
-      assignUserList: [],
-      showDetailPicker: false,
-      ordername: '',
-      ordersummary: '',
-      currentDetail: {
-        id: 0,//当前行id
-        name: '',//当前项目名称
-        number: '',//当前数量
-        amount: ''//当前金额
-      },
-      step: 0,
-      operation_mode: 'new'//操作模式 new新增 edit编辑
-=======
     data () {
         return {
+            ordername: '',
+            ordersummary: '',
             detailList: [],
             assignuser: '',
             assignuserid: 0,
@@ -165,95 +135,95 @@ export default {
             assignUserList: [],
             showDetailPicker: false,
             currentDetail: {
-                id: 0,//当前行id
-                name: '',//当前项目名称
-                number: '',//当前数量
-                amount: ''//当前金额
+                id: 0, // 当前行id
+                name: '', // 当前项目名称
+                number: '', // 当前数量
+                amount: '' // 当前金额
             },
             step: 0,
-            operation_mode: 'new'//操作模式 new新增 edit编辑
->>>>>>> 291f5592b7c2387a89288cd8edf5c546b9388c11
-
+            operation_mode: 'new' // 操作模式 new新增 edit编辑
         }
     },
     methods: {
         onAssignConfirm (value) {
-            this.assignuser = value.name;
-            this.assignuserid = value.id;
-            this.showAssignPicker = false;
+            this.assignuser = value.name
+            this.assignuserid = value.id
+            this.showAssignPicker = false
         },
         onShowDetailPicker (op) {
-            this.showDetailPicker = true;
-            this.operation_mode = op;
-            this.currentDetail.name = '';
-            this.currentDetail.number = '';
-            this.currentDetail.amount = '';
+            this.showDetailPicker = true
+            this.operation_mode = op
+            this.currentDetail.name = ''
+            this.currentDetail.number = ''
+            this.currentDetail.amount = ''
         },
         confirmDetail () {
-            this.showDetailPicker = false;
-            if (this.operation_mode == 'new') {
-                this.currentDetail.id = ++this.step;
-                this.detailList.push(Object.assign({}, this.currentDetail));
+            this.showDetailPicker = false
+            if (this.operation_mode === 'new') {
+                this.currentDetail.id = ++this.step
+                this.detailList.push(Object.assign({}, this.currentDetail))
             } else {
                 this.detailList.forEach(item => {
-                    if (item.id == this.currentDetail.id) {
-                        item.name = this.currentDetail.name;
-                        item.number = this.currentDetail.number;
-                        item.amount = this.currentDetail.amount;
-                        return true;
+                    if (item.id === this.currentDetail.id) {
+                        item.name = this.currentDetail.name
+                        item.number = this.currentDetail.number
+                        item.amount = this.currentDetail.amount
+                        return true
                     }
                 })
             }
         },
         onEditDetail (op, id) {
-            this.showDetailPicker = true;
-            this.operation_mode = op;
-            this.currentDetail.id = id;
+            this.showDetailPicker = true
+            this.operation_mode = op
+            this.currentDetail.id = id
             this.detailList.forEach(item => {
-                if (item.id == id) {
-                    this.currentDetail.name = item.name;
-                    this.currentDetail.number = item.number;
-                    this.currentDetail.amount = item.amount;
+                if (item.id === id) {
+                    this.currentDetail.name = item.name
+                    this.currentDetail.number = item.number
+                    this.currentDetail.amount = item.amount
                 }
             })
         },
         onDedeteDetail (id) {
             this.detailList.some((item, i) => {
-                if (item.id == id) {
+                if (item.id === id) {
                     this.detailList.splice(i, 1)
-                    //在数组的some方法中，如果return true，就会立即终止这个数组的后续循环
+                    // 在数组的some方法中，如果return true，就会立即终止这个数组的后续循环
                     return true
                 }
             })
-
-    },
-    formatData(data) {
-      return numberComma(parseFloat(data).toFixed(2))
-    },
-    onCommit(way) {
-      orderdetailarr = []
-      amount = 0
-      this.detailList.forEach(item => {
-        amount += parseFloat(item.number) * parseFloat(item.amount)
-        let orderdetail = {
-          name: item.name,
-          number: item.number,
-          price: item.amount
-        }
-        orderdetailarr.push(orderdetail)
-      })
-      let param = {
-        name: this.ordername,
-        summary: this.ordersummary,
-        amount: this.total_cost,
-        assign_id: this.assignuserid,
-        orderdetails: orderdetailarr
-      }
-      if (way == 'new') {
-        create_order().then(data => {
-
-        })
-      }
+        },
+        formatData (data) {
+            return numberComma(parseFloat(data).toFixed(2))
+        },
+        onCommit (way) {
+            let orderdetailarr = []
+            let amount = 0
+            this.detailList.forEach(item => {
+                amount += parseFloat(item.number) * parseFloat(item.amount)
+                let orderdetail = {
+                    name: item.name,
+                    number: item.number,
+                    price: item.amount
+                }
+                orderdetailarr.push(orderdetail)
+            })
+            let param = {
+                name: this.ordername,
+                summary: this.ordersummary,
+                amount: this.total_cost,
+                assign_id: this.assignuserid,
+                orderdetails: orderdetailarr
+            }
+            if (way === 'new') {
+                createOrder(param).then(data => {
+                    if (data.status === 200) {
+                        this.$router.go(-1)
+                    }
+                })
+            }
+        },
     },
     computed: {
         total_cost: function () {
@@ -265,8 +235,8 @@ export default {
         }
     },
     created () {
-        before_create_order().then(data => {
-            // debugger
+        beforeCreateOrder().then(data => {
+            //debugger
             data.result.forEach(item => {
                 let param = {
                     id: item.id,
@@ -276,20 +246,6 @@ export default {
             })
         })
     }
-
-  },
-  created() {
-    before_create_order().then(data => {
-      //debugger
-      data.result.forEach(item => {
-        let param = {
-          id: item.id,
-          name: item.name
-        }
-        this.assignUserList.push(param)
-      })
-    })
-  }
 
 }
 </script>
