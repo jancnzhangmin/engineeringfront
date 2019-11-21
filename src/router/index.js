@@ -56,6 +56,12 @@ export default new Router({
             component: () => import('@/views/ower/project/New.vue')
         },
         {
+            path: '/ower/currentproject/edit/:id',
+            name: 'owercurrentprojectnew',
+            component: () => import('@/views/ower/project/Edit.vue'),
+            props: true
+        },
+        {
             path: '/ower/setting',
             name: 'owersetting',
             component: () => import('@/views/ower/setting/Index.vue')

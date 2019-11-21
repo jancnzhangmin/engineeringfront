@@ -4,7 +4,7 @@ import global from '../store/global.js'
 const service = axios.create({
     baseURL: global.baseURL, // process.env.VUE_APP_BASE_API, // url = base url + request url
     // withCredentials: true, // 跨域请求时发送cookie
-    timeout: 5000 // 超时时间
+    timeout: 10000 // 超时时间
 })
 
 service.interceptors.request.use(

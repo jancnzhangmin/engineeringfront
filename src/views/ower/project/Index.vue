@@ -8,31 +8,45 @@
             @click-right="clickEdit()"
             fixed
         />
-        <van-radio-group
-            v-model="radio"
-            class="content"
-            :class="edit ? '' : 'fullbottomcontent'"
-        >
-            <van-cell-group>
-                <van-cell
-                    :title="item.title"
-                    clickable
-                    @click="clickItem(item)"
-                    v-for="item in list"
-                    :key="item.id"
+        <van-pull-refresh v-model="refresh" @refresh="onRefresh">
+            <van-radio-group
+                    v-model="radio"
+                    class="content"
+                    :class="edit ? '' : 'fullbottomcontent'"
                 >
-                    <van-radio
-                        slot="icon"
-                        :name="item.id"
-                        style="margin-right:10px;"
-                        :checked-color="edit ? '#ec7259' : '#1989fa'"
-                    />
-                    <span slot="label" class="van-multi-ellipsis--l2">{{
-                        item.content
-                    }}</span>
-                </van-cell>
-            </van-cell-group>
-        </van-radio-group>
+        
+            
+                <van-list
+                    v-model="loading"
+                    :finished="finished"
+                    finished-text="没有更多了"
+                    @load="onLoad"
+                >
+                    <van-cell-group>
+                        <van-cell
+                            :title="item.name"
+                            clickable
+                            @click="onClickItem(item)"
+                            v-for="item in list"
+                            :key="item.id"
+                            :is-link="edit"
+                        >
+                            <van-radio
+                                slot="icon"
+                                :name="item.id"
+                                style="margin-right:10px;"
+                                :class="edit ? 'hied' : ''"
+                            />
+                            <span slot="label" class="van-multi-ellipsis--l2">{{
+                                item.summary
+                            }}</span>
+                        </van-cell>
+                    </van-cell-group>
+                </van-list>
+            </van-radio-group>
+        </van-pull-refresh>
+        
+        
 
         <van-button
             v-show="!this.edit"
@@ -46,6 +60,7 @@
 </template>
 
 <script>
+import { getProjectList } from '@/api/Project'
 import Vue from 'vue'
 import {
     NavBar,
@@ -53,36 +68,28 @@ import {
     RadioGroup,
     Radio,
     Cell,
-    CellGroup
+    CellGroup,
+    List,
+    PullRefresh
 } from 'vant'
 Vue.use(NavBar)
+Vue.use(PullRefresh)
 Vue.use(RadioGroup)
 Vue.use(Radio)
 Vue.use(Cell).use(CellGroup)
 Vue.use(Button)
+Vue.use(List)
 export default {
     data () {
         return {
             radio: 1,
             edit: false,
             showeditlable: '编辑',
-            list: [
-                {
-                    id: 1,
-                    title: '项目1',
-                    content: '1这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息,这是新项目的描述信息,这是新项目的描述信息'
-                },
-                {
-                    id: 2,
-                    title: '项目2',
-                    content: '2这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息,这是新项目的描述信息,这是新项目的描述信息'
-                },
-                {
-                    id: 3,
-                    title: '项目3',
-                    content: '3这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息，这是新项目的描述信息,这是新项目的描述信息,这是新项目的描述信息'
-                }
-            ]
+            list: [],
+            finished: false,
+            loading: false,
+            page: 1,
+            refresh: false
         }
     },
     methods: {
@@ -98,8 +105,45 @@ export default {
                 this.showeditlable = '取消编辑'
             }
         },
-        clickItem () {
-            this.radio = '1'
+        onClickItem (data) {
+            if (this.edit) {
+                this.$router.push('/ower/currentproject/Edit/' + data.id)
+            } else {
+                if (data.isdefault === 1) {
+                    data.isdefault = 0
+                    this.radio = 0
+                } else {
+                    data.isdefault = 1
+                    this.radio = data.id
+                }
+            }
+        },
+        onLoad () {
+            getProjectList(this.page).then(data => {
+                if (data.result.length > 0) {
+                    data.result.forEach(element => {
+                        this.list.push(Object.assign({}, element))
+                        if (element.isdefault === 1) {
+                            this.radio = element.id
+                        }
+                    })
+                    this.page++
+                } else {
+                    this.finished = true
+                }
+                this.loading = false
+                this.refresh = false
+            }).catch(data => {
+                this.finished = true
+                this.loading = false
+                this.refresh = false
+            })
+        },
+        onRefresh () {
+            this.page = 1
+            this.list = []
+            this.finished = false
+            this.onLoad()
         }
     }
 }
@@ -121,5 +165,8 @@ export default {
 }
 .fullbottomcontent {
     padding-bottom: 54px;
+}
+.hied {
+    display: none;
 }
 </style>

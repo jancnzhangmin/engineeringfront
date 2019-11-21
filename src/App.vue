@@ -7,7 +7,7 @@
             @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
             :name="viewTransition"
         >
-            <router-view class="router-view"></router-view>
+            <router-view class="router-view" style="touch-action: none;"></router-view>
         </transition>
     </div>
 </template>
