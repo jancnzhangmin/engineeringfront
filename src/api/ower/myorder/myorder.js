@@ -14,3 +14,13 @@ export function createOrder (data) {
         data
     })
 }
+
+export function getOrderList (page) {
+    return request({
+        url: '/api/get_order_list',
+        method: 'get',
+        params: {
+            page: page
+        }
+    })
+}

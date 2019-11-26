@@ -1,25 +1,37 @@
 <template>
     <div>
-        <van-nav-bar title="新建公告" left-arrow @click-left="onClickLeft" />
-        <notice-form id = 0 />
+        <van-nav-bar
+            fixed
+            title="订单详情"
+            left-arrow
+            @click-left="onClickLeft"
+            right-text="编辑"
+        />
+
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { NavBar } from 'vant'
-import NoticeForm from './components/NoticeForm'
 
 Vue.use(NavBar)
 
+
 export default {
-    components: {
-        NoticeForm
+props:['id'],   
+    data(){
+return{
+    ordername:''
+}
     },
     methods: {
         onClickLeft () {
             this.$router.go(-1)
         }
+    },
+    created () {
+alert(this.id)
     }
 }
 </script>

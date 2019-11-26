@@ -77,6 +77,18 @@ export default new Router({
             component: () => import('@/views/ower/notice/New.vue')
         },
         {
+            path: '/ower/notice/show/:id',
+            name: 'owernoticeshow',
+            component: () => import('@/views/ower/notice/Show.vue'),
+            props:true
+        },
+        {
+            path: '/ower/notice/edit/:id',
+            name: 'owernoticeedit',
+            component: () => import('@/views/ower/notice/Edit.vue'),
+            props:true
+        },
+        {
             path: '/ower/myorder',
             name: 'owermyorder',
             component: () => import('@/views/ower/myorder/Index.vue')
@@ -85,6 +97,12 @@ export default new Router({
             path: '/ower/myorder/new',
             name: 'owermyordernew',
             component: () => import('@/views/ower/myorder/New.vue')
+        },
+        {
+            path: '/ower/myorder/show/:id',
+            name: 'owermyordershow',
+            component: () => import('@/views/ower/myorder/Show.vue'),
+            props:true
         }
     ]
 })

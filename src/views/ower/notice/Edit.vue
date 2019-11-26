@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-nav-bar title="新建公告" left-arrow @click-left="onClickLeft" />
-        <notice-form id = 0 />
+        <notice-form :id="this.id" />
     </div>
 </template>
 
@@ -11,8 +11,8 @@ import { NavBar } from 'vant'
 import NoticeForm from './components/NoticeForm'
 
 Vue.use(NavBar)
-
 export default {
+    props: ['id'],
     components: {
         NoticeForm
     },
