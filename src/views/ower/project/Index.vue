@@ -8,7 +8,7 @@
             @click-right="clickEdit()"
             fixed
         />
-        <van-pull-refresh v-model="refresh" @refresh="onRefresh">
+        <van-pull-refresh v-model="refresh" @refresh="onRefresh" loading-text="    ">
             <van-radio-group
                     v-model="radio"
                     class="content"
@@ -143,7 +143,7 @@ export default {
             this.page = 1
             this.list = []
             this.finished = false
-            this.onLoad()
+            // this.onLoad()
         }
     }
 }
@@ -168,5 +168,10 @@ export default {
 }
 .hied {
     display: none;
+}
+</style>
+<style>
+.van-pull-refresh__head .van-loading {
+    display: none !important
 }
 </style>
