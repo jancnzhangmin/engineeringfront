@@ -199,9 +199,7 @@ export default {
         },
         onCommit (way) {
             let orderdetailarr = []
-            let amount = 0
             this.detailList.forEach(item => {
-                amount += parseFloat(item.number) * parseFloat(item.amount)
                 let orderdetail = {
                     name: item.name,
                     number: item.number,
@@ -223,7 +221,7 @@ export default {
                     }
                 })
             }
-        },
+        }
     },
     computed: {
         total_cost: function () {
@@ -236,7 +234,7 @@ export default {
     },
     created () {
         beforeCreateOrder().then(data => {
-            //debugger
+            // debugger
             data.result.forEach(item => {
                 let param = {
                     id: item.id,

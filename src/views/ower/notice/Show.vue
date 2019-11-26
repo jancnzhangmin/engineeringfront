@@ -76,7 +76,7 @@ export default {
                 })
             }).catch(() => {
                 // on cancel
-            });
+            })
         }
     },
     created () {

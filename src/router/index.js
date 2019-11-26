@@ -57,7 +57,7 @@ export default new Router({
         },
         {
             path: '/ower/currentproject/edit/:id',
-            name: 'owercurrentprojectnew',
+            name: 'owercurrentprojectedit',
             component: () => import('@/views/ower/project/Edit.vue'),
             props: true
         },
@@ -80,13 +80,13 @@ export default new Router({
             path: '/ower/notice/show/:id',
             name: 'owernoticeshow',
             component: () => import('@/views/ower/notice/Show.vue'),
-            props:true
+            props: true
         },
         {
             path: '/ower/notice/edit/:id',
             name: 'owernoticeedit',
             component: () => import('@/views/ower/notice/Edit.vue'),
-            props:true
+            props: true
         },
         {
             path: '/ower/myorder',
@@ -102,7 +102,7 @@ export default new Router({
             path: '/ower/myorder/show/:id',
             name: 'owermyordershow',
             component: () => import('@/views/ower/myorder/Show.vue'),
-            props:true
+            props: true
         }
     ]
 })

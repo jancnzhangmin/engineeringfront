@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         onCommit () {
-            if (parseInt(this.id) == 0) {
+            if (parseInt(this.id) === 0) {
                 createNotice(this.data).then(res => {
                     if (res.status === 200) {
                         this.$router.go(-1)

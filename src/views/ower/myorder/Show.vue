@@ -7,7 +7,6 @@
             @click-left="onClickLeft"
             right-text="编辑"
         />
-
     </div>
 </template>
 
@@ -17,13 +16,12 @@ import { NavBar } from 'vant'
 
 Vue.use(NavBar)
 
-
 export default {
-props:['id'],   
-    data(){
-return{
-    ordername:''
-}
+    props: ['id'],
+    data () {
+        return {
+            ordername: ''
+        }
     },
     methods: {
         onClickLeft () {
@@ -31,7 +29,7 @@ return{
         }
     },
     created () {
-alert(this.id)
+        alert(this.id)
     }
 }
 </script>

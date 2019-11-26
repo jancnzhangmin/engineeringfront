@@ -20,7 +20,7 @@
                     v-for="item in orderlist"
                     :key="item.id"
                     :title="item.name"
-                    :to="'/ower/myorder/show/'+item.id"
+                    :to="'/ower/myorder/show/' + item.id"
                 >
                     <div slot="default">
                         <div>{{ item.amount }}</div>
@@ -42,7 +42,7 @@
 import Vue from 'vue'
 import { NavBar, List, Cell, CellGroup, Tag, PullRefresh } from 'vant'
 import { getOrderList } from '@/api/ower/myorder/myorder'
-import { parse } from 'path'
+
 Vue.use(NavBar)
 Vue.use(List)
 Vue.use(Cell).use(CellGroup)
@@ -91,7 +91,7 @@ export default {
                             user: '由' + el.user + '创建于' + el.date
                         }
                         this.orderlist.push(param)
-                    });
+                    })
                     if (data.result.finished === 1) {
                         this.finished = true
                     }

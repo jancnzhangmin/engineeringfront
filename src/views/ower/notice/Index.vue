@@ -7,24 +7,28 @@
             @click-left="onClickLeft"
             @click-right="onClickRight"
         />
-<van-pull-refresh v-model="isLoading" @refresh="onRefresh" >
-        <van-list
-            finished-text="没有更多了"
-            :finished="finished"
-            v-model="loading"
-            @load="onLoad"
-            style="margin-top:10px;"
-        >
-            
-            <van-cell v-for="value in list" :key="value.id" :title="value.name" :to="'/ower/notice/show/'+value.id">
-                <div slot="default">
-                    <badge v-show="value.unread"></badge>
-                </div>
-                <div slot="label" class="van-multi-ellipsis--l2">
-                    {{ value.notice }}
-                </div>
-            </van-cell>
-        </van-list>
+        <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+            <van-list
+                finished-text="没有更多了"
+                :finished="finished"
+                v-model="loading"
+                @load="onLoad"
+                style="margin-top:10px;"
+            >
+                <van-cell
+                    v-for="value in list"
+                    :key="value.id"
+                    :title="value.name"
+                    :to="'/ower/notice/show/' + value.id"
+                >
+                    <div slot="default">
+                        <badge v-show="value.unread"></badge>
+                    </div>
+                    <div slot="label" class="van-multi-ellipsis--l2">
+                        {{ value.notice }}
+                    </div>
+                </van-cell>
+            </van-list>
         </van-pull-refresh>
     </div>
 </template>
@@ -34,7 +38,6 @@ import Vue from 'vue'
 import { Cell, CellGroup, NavBar, List, PullRefresh } from 'vant'
 import { Badge } from 'vux'
 import { getNoticeList } from '@/api/ower/notice'
-
 
 Vue.use(Cell).use(CellGroup)
 Vue.use(NavBar)
@@ -72,7 +75,7 @@ export default {
         },
         refreshdata (direct) {
             getNoticeList(this.page).then(data => {
-                if(direct === 'down'){
+                if (direct === 'down') {
                     this.list = []
                     this.isLoading = false
                 }
@@ -80,7 +83,7 @@ export default {
                     this.list.push(Object.assign({}, element))
                 })
                 this.loading = false
-                if (data.result.finished == 1) {
+                if (data.result.finished === 1) {
                     this.finished = true
                 }
             })
